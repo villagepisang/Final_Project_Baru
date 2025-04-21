@@ -1,0 +1,89 @@
+name: Web and API Automation workflow
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  run-api-automation-test:
+  
+    runs-on: windows-latest
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4.0.0
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Setup Chrome with extra capabilities
+      uses: browser-actions/setup-chrome@v1.4.0
+      with:
+        chrome-version: latest # Ganti dengan 'stable' untuk versi stabil
+        chrome-options: '--headless' #(Jika ingin menjalankan Chrome dalam mode headless)
+
+    - name: Set up gradlew
+      run : chmod +x gradlew
+
+    - name: Execute API test
+      run : ./gradlew apiTest
+
+    - name: Archive Test Result
+      uses: actions/upload-artifact@v4.0.0
+      if: always()
+      with:
+        name: api-cucumber-reports
+        path: reports
+
+    - name: Deploy report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3.9.3
+      with:
+        PERSONAL_TOKEN: ${{ secrets.TOKEN_GITHUB_ACTION }}
+        PUBLISH_DIR: reports
+
+  
+  run-web-automation-test:
+  
+    runs-on: windows-latest
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4.0.0
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Chrome with extra capabilities
+      uses: browser-actions/setup-chrome@v1.4.0
+      with:
+        chrome-version: latest # Ganti dengan 'stable' untuk versi stabil
+
+    - name: Set up gradlew
+      run : chmod +x gradlew
+
+    - name: Execute Web test
+      run : ./gradlew webTest
+
+    - name: Archive Test Result
+      uses: actions/upload-artifact@v4.0.0
+      if: always()
+      with:
+        name: web-cucumber-reports
+        path: reports
+
+    - name: Deploy report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3.9.3
+      with:
+        PERSONAL_TOKEN: ${{ secrets.TOKEN_GITHUB_ACTION }}
+        PUBLISH_DIR: reports      
