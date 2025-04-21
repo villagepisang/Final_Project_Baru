@@ -41,14 +41,7 @@ jobs:
         name: api-cucumber-reports
         path: reports
 
-    - name: Deploy report to GitHub Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v3.9.3
-      with:
-        PERSONAL_TOKEN: ${{ secrets.TOKEN_GITHUB_ACTION }}
-        PUBLISH_DIR: reports
-
-  
+    
   run-web-automation-test:
   
     runs-on: windows-latest
