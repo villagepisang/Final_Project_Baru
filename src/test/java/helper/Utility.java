@@ -25,14 +25,14 @@ public class Utility {
     }
 
     public static void startDriver(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-
+        ChromeOptions options = new ChromeOptions(); //untuk headless atau tanpa eksekusi website
+        options.addArguments("--headless");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
+  
     public static void quitDriver() throws InterruptedException {
         Thread.sleep(3000);
         if(driver 1=null){
