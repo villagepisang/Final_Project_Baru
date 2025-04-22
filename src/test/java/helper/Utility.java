@@ -32,9 +32,10 @@ public class Utility {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
+  
     public static void quitDriver() throws InterruptedException {
         Thread.sleep(3000);
-        if(driver != null) {
+        if(driver 1=null){
             driver.quit();
         }
     }
