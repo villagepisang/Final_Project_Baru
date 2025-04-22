@@ -35,7 +35,7 @@ public class Utility {
   
     public static void quitDriver() throws InterruptedException {
         Thread.sleep(3000);
-        if(driver 1=null){
+        if(driver==null){
             driver.quit();
         }
     }
