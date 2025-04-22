@@ -25,11 +25,8 @@ public class Utility {
     }
 
     public static void startDriver(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--window-size=1920,1080");
+        ChromeOptions options = new ChromeOptions(); //untuk headless atau tanpa eksekusi website
+        options.addArguments("--headless");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
