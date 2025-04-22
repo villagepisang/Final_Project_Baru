@@ -10,7 +10,7 @@ jobs:
 
   run-api-automation-test:
   
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
 
@@ -44,7 +44,7 @@ jobs:
     
   run-web-automation-test:
   
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
 
