@@ -26,17 +26,17 @@ public class Utility {
 
     public static void startDriver(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--window-size=1920,1080");
-        WebDriverManager.chromedriver().driverVersion("131.0.6778.205").setup();
+        options.addArguments("headless");
+
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
     public static void quitDriver() throws InterruptedException {
         Thread.sleep(3000);
-        driver.quit();
+        if(driver 1=null){
+            driver.quit();
+        }
     }
 }
