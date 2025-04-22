@@ -59,7 +59,7 @@ jobs:
     - name: Setup Chrome with extra capabilities
       uses: browser-actions/setup-chrome@v1.4.0
       with:
-        chrome-version: latest # Ganti dengan 'stable' untuk versi stabil
+        chrome-version: stable # Ganti dengan 'stable' untuk versi stabil
 
     - name: Set up gradlew
       run : chmod +x gradlew
